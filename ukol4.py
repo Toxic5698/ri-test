@@ -4,6 +4,13 @@ import re
 
 print('Úkol č. 4')
 
+DICT_DATA = {
+    0: 'title',
+    1: 'author',
+    2: 'ISBN',
+    3: 'price'
+}
+
 
 def check_isbn(isbn):
     isbn = isbn.replace("-", "").replace(" ", "").upper()
@@ -56,13 +63,7 @@ with open('tNmieVFn.csv') as csv_file:
             for data_index, data in enumerate(row):
                 # missing data
                 if data_index == (0 or 1) and data is None or data.strip() == '':
-                    dict_data = {
-                        0: 'title',
-                        1: 'author',
-                        2: 'ISBN',
-                        3: 'price'
-                    }
-                    print(f'Missing {dict_data[data_index]} on line: {index}')
+                    print(f'Missing {DICT_DATA[data_index]} on line: {index}')
                 # invalid ISBN
                 elif data_index == 2 and not check_isbn(row[2]):
                     print(f'Invalid ISBN on line: {str(index)}')
